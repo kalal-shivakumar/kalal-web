@@ -1,95 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Website</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahasra | Master Software, Cloud & DevOps Skills</title>
+    <meta name="description" content="Transform your tech career with Sahasra's expert-led courses in Software Development, Cloud Computing, and DevOps Engineering.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0f172a;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --accent-light: #eef2ff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-muted: #94a3b8;
+            --white: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --radius: 12px;
         }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; background: var(--white); }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        header {
-            background-color: #1e3a8a;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+        .top-banner { background: linear-gradient(90deg, var(--accent), #7c3aed); color: var(--white); text-align: center; padding: 12px 24px; font-size: 0.9rem; font-weight: 500; }
+        .top-banner a { color: #fde68a; text-decoration: underline; font-weight: 700; }
 
-        nav {
-            background-color: #2563eb;
-            padding: 10px;
-            text-align: center;
-        }
+        .navbar { position: sticky; top: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; padding: 14px 0; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--primary); }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-light); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta { display: flex; gap: 12px; align-items: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .btn-primary { background: var(--accent); color: var(--white); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(79,70,229,0.4); }
+        .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+        .btn-outline:hover { background: var(--accent); color: var(--white); }
+        .btn-sm { padding: 8px 18px; font-size: 0.8rem; }
+        .btn-lg { padding: 16px 36px; font-size: 1rem; }
+        .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
+        .hero { padding: 100px 0 80px; background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 50%, #faf5ff 100%); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(79,70,229,0.08), transparent 70%); border-radius: 50%; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; line-height: 1.12; color: var(--primary); margin-bottom: 20px; }
+        .hero h1 .highlight { background: linear-gradient(135deg, var(--accent), #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 1.1rem; color: var(--text-light); max-width: 500px; margin-bottom: 32px; line-height: 1.7; }
+        .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+        .hero-stats { display: flex; gap: 32px; }
+        .hero-stat { text-align: center; }
+        .hero-stat-num { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+        .hero-stat-label { font-size: 0.8rem; color: var(--text-muted); }
+        .hero-visual { position: relative; }
+        .hero-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+        .hero-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .hero-card-icon { width: 44px; height: 44px; background: var(--accent-light); color: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .hero-card h3 { font-size: 1rem; color: var(--primary); }
+        .hero-card p { font-size: 0.85rem; color: var(--text-muted); }
+        .hero-card-progress { height: 6px; background: var(--border); border-radius: 3px; margin-top: 16px; overflow: hidden; }
+        .hero-card-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #7c3aed); border-radius: 3px; width: 72%; }
+        .hero-floating { position: absolute; top: -20px; right: -10px; background: var(--white); border: 1px solid var(--border); padding: 12px 16px; border-radius: 10px; box-shadow: var(--shadow); font-size: 0.8rem; font-weight: 600; color: var(--success); display: flex; align-items: center; gap: 6px; }
 
-        .hero {
-            padding: 60px 20px;
-            text-align: center;
-            background-color: white;
-        }
+        .section { padding: 100px 0; }
+        .section-alt { padding: 100px 0; background: var(--bg); }
+        .section-label { display: inline-block; background: var(--accent-light); color: var(--accent); padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .section-desc { font-size: 1rem; color: var(--text-light); max-width: 560px; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header .section-desc { margin: 0 auto; }
 
-        .hero h1 {
-            font-size: 40px;
-            color: #1e3a8a;
-        }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
+        .course-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; position: relative; }
+        .course-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+        .course-card-badge { position: absolute; top: 16px; left: 16px; background: var(--danger); color: var(--white); padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .course-card-badge.new { background: var(--success); }
+        .course-card-badge.popular { background: var(--warning); color: var(--primary); }
+        .course-thumb { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--white); }
+        .course-body { padding: 24px; }
+        .course-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+        .course-tag { background: var(--bg); padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; color: var(--text-light); }
+        .course-body h3 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .course-body p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 16px; line-height: 1.5; }
+        .course-meta { display: flex; gap: 16px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px; }
+        .course-meta i { margin-right: 4px; }
+        .course-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); }
+        .course-price { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--accent); }
+        .course-price .original { text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem; font-weight: 400; margin-left: 6px; }
+        .course-rating { font-size: 0.85rem; color: var(--warning); font-weight: 600; }
 
-        .hero p {
-            font-size: 18px;
-            color: #555;
-        }
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+        .cat-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 20px; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .cat-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
+        .cat-card i { font-size: 2rem; color: var(--accent); margin-bottom: 14px; }
+        .cat-card h3 { font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+        .cat-card span { font-size: 0.8rem; color: var(--text-muted); }
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+        .why-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 28px; transition: all 0.3s; }
+        .why-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+        .why-icon { width: 52px; height: 52px; background: var(--accent-light); color: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px; }
+        .why-card h3 { font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .why-card p { font-size: 0.9rem; color: var(--text-light); }
 
-        footer {
-            background-color: #1e3a8a;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; align-items: start; }
+        .price-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px 32px; position: relative; transition: all 0.3s; }
+        .price-card:hover { box-shadow: var(--shadow); }
+        .price-card.featured { border-color: var(--accent); box-shadow: 0 8px 32px rgba(79,70,229,0.15); transform: scale(1.02); }
+        .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--white); padding: 4px 14px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; }
+        .price-card h3 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .price-amount { font-family: 'Poppins', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--primary); margin: 16px 0; }
+        .price-amount span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+        .price-desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 24px; }
+        .price-features { margin-bottom: 28px; }
+        .price-features li { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 0.9rem; color: var(--text); }
+        .price-features .fa-check { color: var(--success); }
+        .price-features .fa-times { color: var(--text-muted); }
+
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+        .test-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; transition: box-shadow 0.3s; }
+        .test-card:hover { box-shadow: var(--shadow); }
+        .test-stars { color: var(--warning); margin-bottom: 14px; }
+        .test-text { font-size: 0.95rem; color: var(--text); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+        .test-author { display: flex; align-items: center; gap: 12px; }
+        .test-avatar { width: 42px; height: 42px; background: linear-gradient(135deg, var(--accent), #7c3aed); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; }
+        .test-author strong { display: block; font-size: 0.9rem; color: var(--primary); }
+        .test-author span { font-size: 0.8rem; color: var(--text-muted); }
+
+        .cta-banner { background: linear-gradient(135deg, var(--primary) 0%, #1e1b4b 100%); padding: 80px 0; text-align: center; color: var(--white); position: relative; overflow: hidden; }
+        .cta-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(79,70,229,0.3), transparent 60%); }
+        .cta-banner h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 14px; position: relative; }
+        .cta-banner p { font-size: 1.05rem; color: rgba(255,255,255,0.75); margin-bottom: 32px; position: relative; }
+        .cta-banner .btn { position: relative; }
+
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; background: var(--white); }
+        .faq-q { width: 100%; padding: 18px 22px; background: none; border: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--primary); text-align: left; }
+        .faq-q i { color: var(--accent); transition: transform 0.3s; font-size: 0.8rem; }
+        .faq-item.active .faq-q i { transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s; }
+        .faq-a p { padding: 0 22px 18px; font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
+
+        .footer { background: var(--primary); color: rgba(255,255,255,0.7); padding: 70px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { color: var(--white); margin-bottom: 12px; display: inline-block; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.6; max-width: 260px; }
+        .footer-col h4 { color: var(--white); font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; }
+        .footer-col a { display: block; font-size: 0.85rem; padding: 4px 0; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+        .footer-socials { display: flex; gap: 10px; margin-top: 16px; }
+        .footer-socials a { width: 34px; height: 34px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); transition: all 0.2s; }
+        .footer-socials a:hover { background: var(--accent); color: var(--white); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-cta .btn { display: none; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin: 0 auto 32px; }
+            .hero-ctas { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-visual { display: none; }
+            .section, .section-alt { padding: 60px 0; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card.featured { transform: none; }
+            .courses-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-
 <body>
 
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
+    <!-- Top Sales Banner -->
+    <div class="top-banner">
+        ⚡ Limited Time: Get <strong>40% OFF</strong> all courses — Use code <a href="#courses">SAHASRA40</a> at checkout. Offer ends June 5!
+    </div>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="logo">Sahasra<span>.</span></a>
+            <div class="nav-links">
+                <a href="#courses">Courses</a>
+                <a href="#categories">Categories</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#courses" class="btn btn-primary btn-sm">Buy Courses</a>
+            </div>
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+        </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Hello World!</h1>
-        <p>This is a simple website created using only HTML and CSS.</p>
-        <a href="#" class="btn">Get Started</a>
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="hero-badge"><i class="fas fa-fire"></i> 10,000+ Students Already Enrolled</div>
+                <h1>Become a <span class="highlight">Job-Ready Developer</span> in 90 Days</h1>
+                <p class="hero-desc">Master Software Development, Cloud Computing & DevOps with hands-on projects, real-world labs, and expert mentorship. Land your dream tech job.</p>
+                <div class="hero-ctas">
+                    <a href="#courses" class="btn btn-primary btn-lg">Browse Courses — 40% Off</a>
+                    <a href="#pricing" class="btn btn-outline btn-lg">View Plans</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><div class="hero-stat-num">150+</div><div class="hero-stat-label">Courses</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Rating</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">92%</div><div class="hero-stat-label">Placement</div></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <div class="hero-card-icon"><i class="fas fa-code"></i></div>
+                        <div><h3>Full-Stack Mastery</h3><p>72% Complete</p></div>
+                    </div>
+                    <div class="hero-card-progress"><div class="hero-card-progress-fill"></div></div>
+                </div>
+                <div class="hero-floating"><i class="fas fa-check-circle"></i> Certificate Earned!</div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>© 2026 My Website. All Rights Reserved.</p>
+    <!-- Course Categories -->
+    <section class="section-alt" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Explore Skills</div>
+                <h2 class="section-title">Course Categories</h2>
+                <p class="section-desc">Choose your learning path and start building real-world skills today.</p>
+            </div>
+            <div class="cat-grid">
+                <div class="cat-card"><i class="fas fa-laptop-code"></i><h3>Web Development</h3><span>32 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-cloud"></i><h3>Cloud (AWS/Azure)</h3><span>24 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-infinity"></i><h3>DevOps & CI/CD</h3><span>20 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-brain"></i><h3>AI & ML</h3><span>18 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-mobile-alt"></i><h3>Mobile Apps</h3><span>14 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-database"></i><h3>Data Engineering</h3><span>16 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-shield-alt"></i><h3>Cybersecurity</h3><span>12 Courses</span></div>
+                <div class="cat-card"><i class="fas fa-server"></i><h3>Microservices</h3><span>10 Courses</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="section" id="courses">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">🔥 Best Sellers</div>
+                <h2 class="section-title">Top Courses — Limited Offer</h2>
+                <p class="section-desc">Industry-aligned courses with lifetime access. Enroll now at 40% off.</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-card-badge">Bestseller</div>
+                    <div class="course-thumb" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);"><i class="fas fa-code"></i></div>
+                    <div class="course-body">
+                        <div class="course-tags"><span class="course-tag">React</span><span class="course-tag">Node.js</span><span class="course-tag">MongoDB</span></div>
+                        <h3>Full-Stack Web Development Bootcamp</h3>
+                        <p>Build 10+ production apps. From HTML to deploying full-stack apps on cloud.</p>
+                        <div class="course-meta"><span><i class="fas fa-clock"></i> 60 Hours</span><span><i class="fas fa-users"></i> 4,200 Students</span><span><i class="fas fa-certificate"></i> Certificate</span></div>
+                        <div class="course-footer"><span class="course-price">₹2,999 <span class="original">₹4,999</span></span><span class="course-rating"><i class="fas fa-star"></i> 4.9</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-card-badge new">New</div>
+                    <div class="course-thumb" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"><i class="fas fa-cloud"></i></div>
+                    <div class="course-body">
+                        <div class="course-tags"><span class="course-tag">AWS</span><span class="course-tag">Azure</span><span class="course-tag">GCP</span></div>
+                        <h3>Cloud Computing Masterclass (AWS + Azure)</h3>
+                        <p>Get cloud-certified. Hands-on labs with EC2, S3, Lambda, Azure Functions & more.</p>
+                        <div class="course-meta"><span><i class="fas fa-clock"></i> 50 Hours</span><span><i class="fas fa-users"></i> 3,100 Students</span><span><i class="fas fa-certificate"></i> Certificate</span></div>
+                        <div class="course-footer"><span class="course-price">₹3,599 <span class="original">₹5,999</span></span><span class="course-rating"><i class="fas fa-star"></i> 4.8</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-card-badge popular">Popular</div>
+                    <div class="course-thumb" style="background: linear-gradient(135deg, #f59e0b, #f97316);"><i class="fas fa-infinity"></i></div>
+                    <div class="course-body">
+                        <div class="course-tags"><span class="course-tag">Docker</span><span class="course-tag">Kubernetes</span><span class="course-tag">Jenkins</span></div>
+                        <h3>DevOps Engineering — Zero to Hero</h3>
+                        <p>CI/CD pipelines, containerization, orchestration, monitoring. Complete DevOps toolkit.</p>
+                        <div class="course-meta"><span><i class="fas fa-clock"></i> 45 Hours</span><span><i class="fas fa-users"></i> 2,800 Students</span><span><i class="fas fa-certificate"></i> Certificate</span></div>
+                        <div class="course-footer"><span class="course-price">₹2,699 <span class="original">₹4,499</span></span><span class="course-rating"><i class="fas fa-star"></i> 4.8</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-card-badge new">New</div>
+                    <div class="course-thumb" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-brain"></i></div>
+                    <div class="course-body">
+                        <div class="course-tags"><span class="course-tag">Python</span><span class="course-tag">TensorFlow</span><span class="course-tag">LLMs</span></div>
+                        <h3>AI & Machine Learning with Python</h3>
+                        <p>Neural networks, NLP, computer vision, and deploying ML models in production.</p>
+                        <div class="course-meta"><span><i class="fas fa-clock"></i> 55 Hours</span><span><i class="fas fa-users"></i> 2,500 Students</span><span><i class="fas fa-certificate"></i> Certificate</span></div>
+                        <div class="course-footer"><span class="course-price">₹3,299 <span class="original">₹5,499</span></span><span class="course-rating"><i class="fas fa-star"></i> 4.9</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-card-badge">Bestseller</div>
+                    <div class="course-thumb" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);"><i class="fas fa-server"></i></div>
+                    <div class="course-body">
+                        <div class="course-tags"><span class="course-tag">Java</span><span class="course-tag">Spring Boot</span><span class="course-tag">Microservices</span></div>
+                        <h3>Java Microservices & Spring Boot</h3>
+                        <p>Enterprise-grade APIs, event-driven architecture, and deploying on Kubernetes.</p>
+                        <div class="course-meta"><span><i class="fas fa-clock"></i> 48 Hours</span><span><i class="fas fa-users"></i> 1,900 Students</span><span><i class="fas fa-certificate"></i> Certificate</span></div>
+                        <div class="course-footer"><span class="course-price">₹2,899 <span class="original">₹4,799</span></span><span class="course-rating"><i class="fas fa-star"></i> 4.7</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-card-badge popular">Popular</div>
+                    <div class="course-thumb" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="course-body">
+                        <div class="course-tags"><span class="course-tag">React Native</span><span class="course-tag">Flutter</span><span class="course-tag">Firebase</span></div>
+                        <h3>Mobile App Development (iOS & Android)</h3>
+                        <p>Build and publish cross-platform apps to App Store and Google Play.</p>
+                        <div class="course-meta"><span><i class="fas fa-clock"></i> 40 Hours</span><span><i class="fas fa-users"></i> 1,600 Students</span><span><i class="fas fa-certificate"></i> Certificate</span></div>
+                        <div class="course-footer"><span class="course-price">₹2,499 <span class="original">₹3,999</span></span><span class="course-rating"><i class="fas fa-star"></i> 4.8</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Sahasra -->
+    <section class="section-alt" id="why">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Why Sahasra?</div>
+                <h2 class="section-title">What Makes Us Different</h2>
+                <p class="section-desc">We don't just teach — we make sure you get hired.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card"><div class="why-icon"><i class="fas fa-laptop-code"></i></div><h3>Hands-On Projects</h3><p>Build 50+ real-world projects. No theory overload — learn by doing from day one.</p></div>
+                <div class="why-card"><div class="why-icon"><i class="fas fa-user-tie"></i></div><h3>Industry Mentors</h3><p>Learn from engineers at Google, Amazon, Microsoft with 10+ years experience.</p></div>
+                <div class="why-card"><div class="why-icon"><i class="fas fa-briefcase"></i></div><h3>Job Placement Support</h3><p>Resume building, mock interviews, and direct referrals to 100+ hiring partners.</p></div>
+                <div class="why-card"><div class="why-icon"><i class="fas fa-infinity"></i></div><h3>Lifetime Access</h3><p>Buy once, learn forever. All course updates and new content included free.</p></div>
+                <div class="why-card"><div class="why-icon"><i class="fas fa-certificate"></i></div><h3>Verified Certificates</h3><p>Industry-recognized certificates that employers trust and value.</p></div>
+                <div class="why-card"><div class="why-icon"><i class="fas fa-undo"></i></div><h3>30-Day Money Back</h3><p>Not satisfied? Full refund within 30 days — zero risk, zero questions asked.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Pricing</div>
+                <h2 class="section-title">Invest in Your Future</h2>
+                <p class="section-desc">Choose individual courses or unlock everything with a subscription.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Single Course</h3>
+                    <div class="price-amount">₹2,999<span> one-time</span></div>
+                    <p class="price-desc">Perfect for focused learning on one topic.</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Choose any 1 course</li>
+                        <li><i class="fas fa-check"></i> Lifetime access</li>
+                        <li><i class="fas fa-check"></i> Course certificate</li>
+                        <li><i class="fas fa-check"></i> Community access</li>
+                        <li><i class="fas fa-times"></i> 1-on-1 mentorship</li>
+                        <li><i class="fas fa-times"></i> Job placement support</li>
+                    </ul>
+                    <a href="#courses" class="btn btn-outline" style="width:100%;">Select Course</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="price-badge">BEST VALUE</div>
+                    <h3>All-Access Pro</h3>
+                    <div class="price-amount">₹4,999<span>/month</span></div>
+                    <p class="price-desc">Unlimited learning for serious career changers.</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> All 150+ courses</li>
+                        <li><i class="fas fa-check"></i> Lifetime access</li>
+                        <li><i class="fas fa-check"></i> All certificates</li>
+                        <li><i class="fas fa-check"></i> Weekly live sessions</li>
+                        <li><i class="fas fa-check"></i> 1-on-1 mentorship</li>
+                        <li><i class="fas fa-times"></i> Job placement support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width:100%;">Start Pro — 40% Off</a>
+                </div>
+                <div class="price-card">
+                    <h3>Career Accelerator</h3>
+                    <div class="price-amount">₹9,999<span>/month</span></div>
+                    <p class="price-desc">Full support until you land a tech job.</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Dedicated career coach</li>
+                        <li><i class="fas fa-check"></i> Mock interviews</li>
+                        <li><i class="fas fa-check"></i> Resume & portfolio review</li>
+                        <li><i class="fas fa-check"></i> Direct company referrals</li>
+                        <li><i class="fas fa-check"></i> Guaranteed placement*</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width:100%;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-alt" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Student Success</div>
+                <h2 class="section-title">What Our Graduates Say</h2>
+                <p class="section-desc">Real results from real students who invested in themselves.</p>
+            </div>
+            <div class="test-grid">
+                <div class="test-card">
+                    <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="test-text">"I went from a non-tech background to a ₹12 LPA software developer role in 5 months. The DevOps course was a game changer."</p>
+                    <div class="test-author"><div class="test-avatar">RK</div><div><strong>Rahul Kumar</strong><span>DevOps Engineer, Infosys</span></div></div>
+                </div>
+                <div class="test-card">
+                    <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="test-text">"The AWS + Azure course helped me clear both certifications on my first attempt. Incredible structured curriculum."</p>
+                    <div class="test-author"><div class="test-avatar">SA</div><div><strong>Sneha Agarwal</strong><span>Cloud Engineer, TCS</span></div></div>
+                </div>
+                <div class="test-card">
+                    <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="test-text">"Best money I ever spent. The Full-Stack bootcamp portfolio projects landed me 3 job offers."</p>
+                    <div class="test-author"><div class="test-avatar">VP</div><div><strong>Vikram Patil</strong><span>Full-Stack Dev, Razorpay</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Ready to Transform Your Career?</h2>
+            <p>Join 10,000+ students already building their dream tech careers. Limited seats available.</p>
+            <a href="#courses" class="btn btn-primary btn-lg">Enroll Now — 40% Off Today</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item"><button class="faq-q"><span>Do I need coding experience to start?</span><i class="fas fa-plus"></i></button><div class="faq-a"><p>No! Our courses start from absolute basics. Whether you're a complete beginner or looking to upskill, we have the right path for you.</p></div></div>
+                <div class="faq-item"><button class="faq-q"><span>How long do I have access to the courses?</span><i class="fas fa-plus"></i></button><div class="faq-a"><p>Lifetime access! Once you purchase, you can revisit the content anytime including all future updates at no extra cost.</p></div></div>
+                <div class="faq-item"><button class="faq-q"><span>Will I get a certificate after completing?</span><i class="fas fa-plus"></i></button><div class="faq-a"><p>Yes! You'll receive a verified, shareable certificate upon completion that you can add to your LinkedIn and resume.</p></div></div>
+                <div class="faq-item"><button class="faq-q"><span>What if I'm not satisfied with the course?</span><i class="fas fa-plus"></i></button><div class="faq-a"><p>We offer a 30-day money-back guarantee. If you're not happy for any reason, we'll refund your full payment — no questions asked.</p></div></div>
+                <div class="faq-item"><button class="faq-q"><span>Do you help with job placement?</span><i class="fas fa-plus"></i></button><div class="faq-a"><p>Yes! Our Career Accelerator plan includes dedicated placement support — resume reviews, mock interviews, and referrals to 100+ hiring partners.</p></div></div>
+                <div class="faq-item"><button class="faq-q"><span>Can I switch between courses?</span><i class="fas fa-plus"></i></button><div class="faq-a"><p>With our All-Access Pro or Career Accelerator plans, you get unlimited access to all 150+ courses and can switch anytime.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sahasra<span>.</span></div>
+                    <p>Empowering the next generation of developers with job-ready tech skills.</p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Courses</h4><a href="#">Web Development</a><a href="#">Cloud Computing</a><a href="#">DevOps Engineering</a><a href="#">AI & Machine Learning</a><a href="#">Mobile Development</a></div>
+                <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Partners</a><a href="#">Contact</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Refund Policy</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">hello@sahasra.dev</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Sahasra. All rights reserved. Built with ❤️ in India.</p></div>
+        </div>
     </footer>
 
+    <script>
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const answer = item.querySelector('.faq-a');
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('active'); i.querySelector('.faq-a').style.maxHeight = null; });
+                if (!isActive) { item.classList.add('active'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
+            });
+        });
+        window.addEventListener('scroll', () => { document.querySelector('.navbar').style.boxShadow = window.scrollY > 20 ? '0 2px 12px rgba(0,0,0,0.06)' : 'none'; });
+        document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); } }); });
+    </script>
 </body>
 </html>
