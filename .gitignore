@@ -1,0 +1,38 @@
+# GPG Keys - NEVER COMMIT PRIVATE KEYS
+*.asc
+*.key
+*.gpg
+private-key*
+public-key*
+.gnupg/
+
+# Secrets and credentials
+.env
+.env.local
+*.pem
+id_rsa
+id_rsa.pub
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Node modules and dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Logs
+logs/
+*.log
